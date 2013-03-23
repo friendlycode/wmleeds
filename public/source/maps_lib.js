@@ -18,21 +18,21 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
+  fusionTableId:      "1KCWrO7nknrjZS8NvQyaGVjEn76szX8KpjhHKOKc",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
-  googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
+  googleApiKey:       "AIzaSyBYOXtIO5dYKYUwpPkwjsxKTqGbhYH1nuA",
 
   //name of the location column in your Fusion Table.
   //NOTE: if your location column name has spaces in it, surround it with single quotes
   //example: locationColumn:     "'my location'",
-  locationColumn:     "geometry",
+  locationColumn:     "Location",
 
-  map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312), //center that your map defaults to
-  locationScope:      "chicago",      //geographical area appended to all address searches
-  recordName:         "result",       //for showing number of results
-  recordNamePlural:   "results",
+  map_centroid:       new google.maps.LatLng(42.96336, -85.668086), //center that your map defaults to
+  locationScope:      "grand rapids, mi",      //geographical area appended to all address searches
+  recordName:         "building",       //for showing number of results
+  recordNamePlural:   "buildings",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
   defaultZoom:        11,             //zoom level when map is loaded (bigger is more zoomed in)
@@ -41,6 +41,7 @@ var MapsLib = {
 
   initialize: function() {
     $( "#result_count" ).html("");
+    $("#text_search").val("");
 
     geocoder = new google.maps.Geocoder();
     var myOptions = {
@@ -81,6 +82,10 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
+    var text_search = $("#project_search").val().replace("'", "\'");
+    if (project_search != '') {
+      whereClause += " AND 'ProjectName' contains ignoring case '" + project_search + "'";
+    }
 
     //-------end of custom filters--------
 
