@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/bootstrap.spacelab.min.css"/>
     <link rel="stylesheet" href="styles/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="styles/custom.css"/>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"/>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,6 +28,7 @@
       <div class='row-fluid'>
         <div class='span4'>
           <p>West Michigan has one of the highest concentrations of LEED-certified buildings in the country. Grand Rapids is <a href="http://www.fastcompany.com/1007062/americas-greenest-city">often</a> <a href="http://www.experiencegr.com/about-grand-rapids/green-grand-rapids/">cited</a> as having the highest number of LEED-certified buildings per capita. Grand Rapids is home to the first LEED-certified <a href="http://usgbcwm.org/leed/area-leed-project-showcase/the-rapid-central-station">transit center</a>, <a href="http://usgbcwm.org/leed/area-leed-project-showcase/grand-rapids-art-museum">art museum</a>, <a href="http://usgbcwm.org/leed/area-leed-project-showcase/david-d-hunting-ymca">YMCA</a> as well other notable LEED-certified <a href="http://usgbcwm.org/leed/area-leed-project-showcase/grace-hauenstein-library">libraries</a>, <a href="http://www.mlive.com/business/west-michigan/index.ssf/2012/02/brewery_vivant_in_grand_rapids_1.html">breweries</a>, and <a href="http://usgbcwm.org/leed/area-leed-project-showcase/harrison-park-elementary">schools</a>.</p>
+
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -41,17 +43,28 @@
                 <option value='3220'>2 miles</option>
               </select>
             </label>
+
+            <h4>
+              LEED Certification Level
+            </h4>
+            <label>
+              <select id='select_cert_level'>
+                <option value=''>All Levels</option>
+                <option value='Certified'>Certified</option>
+                <option value='Silver'>Silver</option>
+                <option value='Gold'>Gold</option>
+                <option value='Platinum'>Platinum</option>
+              </select>
+            </label>
+
             <input class='btn btn-primary' id='search' type='button' value='Search' />
             <button class='btn' id='reset'>Reset</button>
           </div>
-          <div class='well'>
-            <h4>
-              Projects
-            </h4>
-            <input class='input-block-level' id='project_search' placeholder="Enter a project name" type='text' />
 
-          </div>
           <p class='alert alert-info lead' id='result_count'></p>
+          <div class='well'>
+            <div id='results_list'></div>
+          </div>
         </div>
         <div class='span8'>
           <div id='map_canvas'></div>
@@ -68,6 +81,7 @@
     <script type="text/javascript" src="source/jquery.js"></script>
     <script type="text/javascript" src="source/bootstrap.js"></script>
     <script type="text/javascript" src="source/jquery.address.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script type="text/javascript" src="source/jquery.geocomplete.min.js"></script>
     <script type="text/javascript" src="source/maps_lib.js"></script>

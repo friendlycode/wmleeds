@@ -35,7 +35,7 @@ var MapsLib = {
   recordNamePlural:   "buildings",
 
   searchRadius:       805,            //in meters ~ 1/2 mile
-  defaultZoom:        11,             //zoom level when map is loaded (bigger is more zoomed in)
+  defaultZoom:        10,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage: 'http://derekeder.com/images/icons/blue-pushpin.png',
   currentPinpoint: null,
 
@@ -82,9 +82,9 @@ var MapsLib = {
     var whereClause = MapsLib.locationColumn + " not equal to ''";
 
     //-----custom filters-------
-    var text_search = $("#project_search").val().replace("'", "\'");
-    if (project_search != '') {
-      whereClause += " AND 'ProjectName' contains ignoring case '" + project_search + "'";
+
+    if ( $("#select_cert_level").val() != "") {
+      whereClause += " AND 'CertLevel' = '" + $("#select_cert_level").val() + "'";
     }
 
     //-------end of custom filters--------
@@ -142,6 +142,7 @@ var MapsLib = {
     });
     MapsLib.searchrecords.setMap(map);
     MapsLib.getCount(whereClause);
+    MapsLib.getList(whereClause);
   },
 
   clearSearch: function() {
@@ -261,5 +262,42 @@ var MapsLib = {
   convertToPlainString: function(text) {
     if (text == undefined) return '';
   	return decodeURIComponent(text);
+  },
+
+  getList: function(whereClause) {
+    var selectColumns = "ProjectName, Street, City, CertLevel ";
+    MapsLib.query(selectColumns, whereClause, "MapsLib.displayList");
+  },
+
+  displayList: function(json) {
+    MapsLib.handleError(json);
+    var data = json["rows"];
+    var template = "";
+
+    var results = $("#results_list");
+    results.hide().empty(); //hide the existing list and empty it out first
+
+    if (data == null) {
+      //clear results list
+      results.append("<li><span class='lead'>No results found</span></li>");
+    }
+    else {
+      for (var row in data) {
+        template = "\
+          <div class='row-fluid item-list'>\
+            <div class='span12'>\
+              <strong>" + data[row][0] + "</strong>\
+              <br />\
+              " + data[row][1] + "\
+              <br />\
+              " + data[row][2] + "\
+              <br />\
+              " + data[row][3] + "\
+            </div>\
+          </div>"
+        results.append(template);
+      }
+    }
+    results.fadeIn();
   }
-}
+};
