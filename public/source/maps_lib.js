@@ -70,6 +70,22 @@ var MapsLib = {
     $(":checkbox").attr("checked", "checked");
     $("#result_count").hide();
 
+    $("#leed-points-slider").slider({
+        orientation: "horizontal",
+        range: true,
+        min: 0,
+        max: 100,
+        values: [0, 100],
+        step: 5,
+        slide: function (event, ui) {
+            $("#leed-points-start").html(ui.values[0]);
+            $("#leed-points-end").html(ui.values[1]);
+        },
+        stop: function(event, ui) {
+          MapsLib.doSearch();
+        }
+    });
+
     //run the default search
     MapsLib.doSearch();
   },
@@ -85,6 +101,11 @@ var MapsLib = {
 
     if ( $("#select_cert_level").val() != "") {
       whereClause += " AND 'CertLevel' = '" + $("#select_cert_level").val() + "'";
+    }
+
+    if ( $("#leed-points-start").html() != 0 || $("#leed-points-end").html() != 100 ) {
+      whereClause += " AND 'PointsAchieved' >= '" + $("#leed-points-start").html() + "'";
+      whereClause += " AND 'PointsAchieved' <= '" + $("#leed-points-end").html() + "'";
     }
 
     //-------end of custom filters--------

@@ -29,6 +29,7 @@
         <div class='span4'>
           <p>West Michigan has one of the highest concentrations of LEED-certified buildings in the country. Grand Rapids is <a href="http://www.fastcompany.com/1007062/americas-greenest-city">often</a> <a href="http://www.experiencegr.com/about-grand-rapids/green-grand-rapids/">cited</a> as having the highest number of LEED-certified buildings per capita. Grand Rapids is home to the first LEED-certified <a href="http://usgbcwm.org/leed/area-leed-project-showcase/the-rapid-central-station">transit center</a>, <a href="http://usgbcwm.org/leed/area-leed-project-showcase/grand-rapids-art-museum">art museum</a>, <a href="http://usgbcwm.org/leed/area-leed-project-showcase/david-d-hunting-ymca">YMCA</a> as well other notable LEED-certified <a href="http://usgbcwm.org/leed/area-leed-project-showcase/grace-hauenstein-library">libraries</a>, <a href="http://www.mlive.com/business/west-michigan/index.ssf/2012/02/brewery_vivant_in_grand_rapids_1.html">breweries</a>, and <a href="http://usgbcwm.org/leed/area-leed-project-showcase/harrison-park-elementary">schools</a>.</p>
 
+          <p><em>Data Updated: 03.15.2013</em></p>
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -45,7 +46,7 @@
             </label>
 
             <h4>
-              LEED Certification Level
+              Certification Level
             </h4>
             <label>
               <select id='select_cert_level'>
@@ -56,6 +57,21 @@
                 <option value='Platinum'>Platinum</option>
               </select>
             </label>
+
+            <h4>
+              Points
+              <small>
+                <span id='leed-points-start'>0</span>
+                -
+                <span id='leed-points-end'>100</span>
+              </small>
+            </h4>
+            <div id='leed-points-slider'></div>
+            <span class='pull-left'>0</span>
+            <span class='pull-right'>100</span>
+
+            <br><br>
+            <p><a href="http://new.usgbc.org/ratingsystems">Learn more about LEED ratings and points</a>.</p>
 
             <input class='btn btn-primary' id='search' type='button' value='Search' />
             <button class='btn' id='reset'>Reset</button>
@@ -69,10 +85,11 @@
         <div class='span8'>
           <div id='map_canvas'></div>
           <p class='pull-right'>
-            Built by <a href="http://jpichot.com">Jonathan Pichot</a>.
             A <a href="http://friendlycode.org">Friendly Code</a> project
-            hosted on <a href="http://www.webfaction.com/signup?affiliate=pichot">Webfaction</a>.
-            Built using the <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
+            by <a href="http://jpichot.com">Jonathan Pichot</a>
+            hosted on <a href="http://www.webfaction.com/signup?affiliate=pichot">Webfaction</a>
+            using the <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
+            Fork it <a href="https://github.com/friendlycode/wmleeds">here</a>.
         </p>
         </div>
       </div>
