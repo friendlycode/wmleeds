@@ -108,6 +108,9 @@ var MapsLib = {
       whereClause += " AND 'PointsAchieved' <= '" + $("#leed-points-end").html() + "'";
     }
 
+    if ( $("#is_certified").is(':checked')) whereClause += " AND 'IsCertified'='Yes'";
+    if ( $("#is_registered").is(':checked')) whereClause += " AND 'IsCertified'='No'";
+
     //-------end of custom filters--------
 
     if (address != "") {
